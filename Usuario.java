@@ -18,7 +18,7 @@ public class Usuario {
         this.direccion = direccion;
         this.telefono = telefono;
         this.cartera = cartera;
-        cremas = new Crema
+        cremas = new Crema[20];
     }
 
     //GETTERS
