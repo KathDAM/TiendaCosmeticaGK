@@ -105,7 +105,7 @@ public class Usuario {
 
     //REGISTRAR USUARIO
     public static void registrarusuario() {
-        cont= 0;
+        int cont= 0;
         if (cont< max) {  //Creamos cuenta nueva desde cero si hay hueco en nuestra matriz
             System.out.println("¿Cual sera el nombre de la nueva cuenta bancaria?: ");
                 String nombre= PedirNombre();
