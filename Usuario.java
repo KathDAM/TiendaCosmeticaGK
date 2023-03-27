@@ -134,11 +134,11 @@ public class Usuario {
             System.out.println("¿Cuantas cremas desea agregar al carrito?");
             //SCANNER INT
             int cantcremas = S.nextInt;
-            cremas[numProd] = new Crema(nombrecremas, cantcremas)
+            cremas[numProd] = new Crema(nombrecremas, cantcremas);
             numProd++;
         }
         else{
-            System.out.println("No tienes mas espacio en el carrito")
+            System.out.println("No tienes mas espacio en el carrito");
         }
     }
 
