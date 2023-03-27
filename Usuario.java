@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 //GK(Giuliana y Catherine)
 public class Usuario {
+    Scanner S = new Scanner(System.in);
     
 
     //ATRIBUTOS
