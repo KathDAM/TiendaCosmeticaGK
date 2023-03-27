@@ -103,7 +103,7 @@ public class Usuario {
         int cantcremas= S.nextInt;
         for (int i = 0; i < Crema.lenght; i++) {
             for (int j = 0; j < cantcremas; j++) {
-                Crema[]
+                Crema[] ;
             }
         }
         
