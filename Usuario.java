@@ -9,9 +9,10 @@ public class Usuario {
     private String direccion;
     private String telefono;
     private double cartera;
-    private Crema[] cremas;
-    private static int numProd = 0;
-    private static int maxProd = 50;
+    private static Crema[] cremas;
+    private static int numProd = 0; //CONTADOR DE PRODUCTOS EN CARRITO
+    private static int maxProd = 50; //CANT MAXIMA PERMITIDA DE CREMAS POR USUARIO
+    private static int max = 100; //CANT CUENTAS USUARIO
 
     //CONSTRUCTOR VACIO
     public Usuario() {
