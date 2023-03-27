@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 //GK(Giuliana y Catherine)
 public class Usuario {
-    Scanner S = new Scanner(System.in);
+    Scanner lector = new Scanner(System.in);
     
 
     //ATRIBUTOS
@@ -135,7 +135,7 @@ public class Usuario {
             //SCANNER STRING
             System.out.println("¿Cuantas cremas desea agregar al carrito?");
             //SCANNER INT
-            int cantcremas = S.nextInt;
+            int cantcremas = lector.nextInt;
             cremas[numProd] = new Crema(nombrecremas, cantcremas);
             numProd++;
         }
