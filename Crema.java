@@ -13,9 +13,9 @@ public class Crema{
     }
 
     //CONSRUCTOR
-    public Crema(int cant, int precio) {
+    public Crema(int cant, String nombre) {
         this.cant = cant;
-        this.precio = precio;
+        this.nombre = nombre;
     }
 
     //GETTERS 

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 //GK(Giuliana y Catherine)
 public class Usuario {
     
@@ -8,18 +10,22 @@ public class Usuario {
     private String telefono;
     private double cartera;
     private Crema[] cremas;
+    private static int numProd = 0;
+    private static int maxProd = 50;
 
     //CONSTRUCTOR VACIO
     public Usuario() {
        
     }
     //CONSTRUCTOR
-    public Usuario(String nombre, String direccion, String telefono, double cartera ) {
+    public Usuario(String nombre, String direccion, String telefono, double cartera, int numProd, int maxProd) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.cartera = cartera;
-        cremas = new Crema[50];
+        cremas = new Crema[maxProd];
+        this.numProd = numProd;
+        this.maxProd = maxProd;
     }
 
     //GETTERS
@@ -35,6 +41,12 @@ public class Usuario {
     public double getCartera() {
         return cartera;
     }
+    public int getNumProd() {
+        return numProd;
+    }
+    public int getMaxProd() {
+        return maxProd;
+    }
 
     //SETTERS
     public void setNombre(String nombre) {
@@ -49,6 +61,12 @@ public class Usuario {
     public void setCartera(double cartera) {
         this.cartera = cartera;
     }
+    public void setNumProd(int numProd) {
+        this.numProd = numProd;
+    }
+    public void setMaxProd(int maxProd) {
+        this.maxProd = maxProd;
+    }
 
     //METODOS
 
@@ -62,12 +80,22 @@ public class Usuario {
         return valor;  
         
     } 
+
+    public static int PedirDato(){ //Pide un dato al cliente
+        Scanner lector = new Scanner(System.in);
+        
+        int valor;
+        valor = lector.nextInt();
+       
+        return valor;  
+        
+    } 
     
     //VERIFICA SI ESTA DUPLICADO EL NOMBRE EN EL ARRAY
     public static boolean nombreRepetido() {
         boolean repetido = false;
         for (int i = 0; i < max; i++) {
-            if (Usuario[i].toLowerCase().equals(Usuario[cuent].toLowerCase())) {
+            if (usuario[i].toLowerCase().equals(usuario[nombre].toLowerCase())) {
                 repetido = true;
             }
         }
@@ -86,7 +114,7 @@ public class Usuario {
                         return;
                     }
                 }
-                Usuario[cont] = nombre;
+                usuario[cont] = nombre;
                 
                 cont++;
                 System.out.println("Cuenta agregada correctamente.");
@@ -96,23 +124,30 @@ public class Usuario {
         }
         
     }
-
+        
     //AGREGAR CREMA
     public static void agregarcrema(){
-        System.out.println("¿Cuantas cremas desea agregar al carrito?");
-        int cantcremas= S.nextInt;
-        for (int i = 0; i < Crema.lenght; i++) {
-            for (int j = 0; j < cantcremas; j++) {
-                Crema[] ;
-            }
+        //Control carrito lleno
+        if (numProd < maxProd){
+            System.out.println("Dime el nombre de la crema que deseas agregar al carrito?");
+            //SCANNER STRING
+            System.out.println("¿Cuantas cremas desea agregar al carrito?");
+            //SCANNER INT
+            int cantcremas = S.nextInt;
+            cremas[numProd] = new Crema(nombrecremas, cantcremas)
+            numProd++;
         }
-        
+        else{
+            System.out.println("No tienes mas espacio en el carrito")
+        }
     }
 
     public static void eliminar() { //5.metodo para eliminar cuenta
 
+        int cont;
+
         if(cont == 0){
-            System.out.println("Disculpa,no hay cuentas disponibles");
+            System.out.println("Disculpa,no hay cuentas de usuario disponibles");
 
         System.out.println("Selecciona la cuenta a eliminar");
             int borrar = PedirDato();
@@ -122,7 +157,7 @@ public class Usuario {
             }else if(borrar >= 0 && borrar < cont){ //Busca la cuenta y desplaza fila y columna para eliminarla
                 System.out.println("Se ha borrado la cuenta de " + Usuario[borrar-1]);
                 for (int i = borrar + 1; i < cont; i++){
-                    Usuario[i-1] = cuenta[i];
+                    Usuario[i-1] = nombre[i];
                 }
                 cont--;
                 System.out.println("Cuenta eliminada");
@@ -130,8 +165,7 @@ public class Usuario {
             return;
         }
     }  
-
-
+    
     //PAGAR MONTO TOTAL
     public static void pagarmonto(){
         System.out.println("Ingresar monto total: ");
@@ -142,7 +176,5 @@ public class Usuario {
         int moning = S.nextInt();
         Crema[num] = Crema[num] + moning;
     }
-
-
 
 }
