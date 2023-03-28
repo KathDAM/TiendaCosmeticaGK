@@ -79,9 +79,8 @@ public class Usuario {
         String valor;
         valor = lector.nextLine();
       
-        return valor;  
-        
-    } 
+        return valor;
+    }
 
     public static int PedirDato(){ //Pide un dato al cliente
         Scanner lector = new Scanner(System.in);
@@ -90,7 +89,6 @@ public class Usuario {
         valor = lector.nextInt();
        
         return valor;  
-        
     } 
     
     //VERIFICA SI ESTA DUPLICADO EL NOMBRE EN EL ARRAY
@@ -133,9 +131,10 @@ public class Usuario {
         if (numProd < maxProd){
             System.out.println("Dime el nombre de la crema que deseas agregar al carrito?");
             //SCANNER STRING
+            int nombre = PedirDato();
             System.out.println("¿Cuantas cremas desea agregar al carrito?");
             //SCANNER INT
-            int cantcremas = lector.nextInt;
+            int cantcremas = PedirDato();
             cremas[numProd] = new Crema(nombrecremas, cantcremas);
             numProd++;
         }
@@ -172,11 +171,11 @@ public class Usuario {
     public static void pagarmonto(){
         System.out.println("Ingresar monto total: ");
         System.out.println("Dime numero de usuario: ");
-        int num = S.nextInt();
+        int num = lector.nextInt();
                 //CANT. DE DINERO A PAGAR
         System.out.println("¿Cuanto dinero debes abonar: " + num + " ?" );
-        int moning = S.nextInt();
-        Crema[num] = Crema[num] + moning;
+        int moning = lector.nextInt();
+        Crema[num] = crema[num] + moning;
     }
 
 }
