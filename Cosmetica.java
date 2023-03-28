@@ -6,8 +6,20 @@ public class Cosmetica {
 //ATRIBUTOS
 TiendaCosmetica GK = new TiendaCosmetica();
 
-TiendaCosmetica iniciar ();
+public static void main(String[]args) {
 
-    
+
+    //Bucle para pasar por los apartados del menu
+    int opciones = 0;
+
+    do {
+        opciones = TiendaCosmetica.menu();
+        TiendaCosmetica.programa(opciones);
+        System.out.println("");
+    } while (opciones !=6);  
+   
+}
+
+/*TiendaCosmetica iniciar ();*/
     
 }

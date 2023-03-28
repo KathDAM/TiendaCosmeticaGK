@@ -13,9 +13,10 @@ public class Crema{
     }
 
     //CONSRUCTOR
-    public Crema(int cant, String nombre) {
-        this.cant = cant;
+    public Crema(String nombre, int cant ) {
         this.nombre = nombre;
+        this.cant = cant;
+        
     }
 
     //GETTERS 
