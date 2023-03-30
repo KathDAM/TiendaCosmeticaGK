@@ -4,7 +4,6 @@ public class Crema{
     //ATRIBUTOS
     private String nombre;
     private int cant;
-    //private String descripcion;
     private double precio;
 
     //CONSTRUCTOR VACIO
