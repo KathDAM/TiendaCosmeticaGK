@@ -1,36 +1,32 @@
 //GK(Giuliana y Catherine)
 //SCANNER
+import java.sql.Array;
 import java.util.Scanner;
 
 public class Usuario {
-    static Scanner lector = new Scanner(System.in);
-    private static Usuario[] usuario = new Usuario[100];
-
 
     //ATRIBUTOS
     private String nombre; //N0MBRE USUARIO 
     private String direccion; //DIRECCION DEL USUARIO
     private String telefono; //TELEFONO DEL USUARIO
-    private static Crema[] cremas; //ARRAY 
-    private static int numProd = 0; //CONTADOR DE PRODUCTOS EN CARRITO
-    private static int maxProd = 50; //CANT MAXIMA PERMITIDA DE CREMAS POR USUARIO
-    private static int max = 100; //CANT CUENTAS USUARIO
-    static int cont= 0;
+    private int maxProd = 50; //CANT MAXIMA PERMITIDA DE CREMAS POR USUARIO
+    private Crema[] cesta = new Crema[maxProd]; //ARRAY 
+    private int numProd = 0; //CONTADOR DE PRODUCTOS EN CARRITO
+    private double cartera;
+    private double precioCesta = 0;
 
-    //CONSTRUCTOR VACIO
+    //CONSTRUCTOR USUARIO VACIO
     public Usuario() {
        
     }
 
     //CONSTRUCTOR
-    public Usuario(String nombre, String direccion, String telefono, double cartera, int numProd, int maxProd, int max) {
+    public Usuario(String nombre, String direccion, String telefono, double cartera, int maxProd) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        cremas = new Crema[maxProd];
-        this.numProd = numProd;
         this.maxProd = maxProd;
-        this.max = max;
+        this.cartera = cartera;
     }
 
     //GETTERS
@@ -46,11 +42,14 @@ public class Usuario {
     public int getNumProd() {
         return numProd;
     }
+    public double getCartera() {
+        return cartera;
+    }
+    public double getPrecioCesta() {
+        return precioCesta;
+    }
     public int getMaxProd() {
         return maxProd;
-    }
-    public static int getMax() {
-        return max;
     }
 
     //SETTERS
@@ -63,127 +62,42 @@ public class Usuario {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    public void setNumProd(int numProd) {
-        this.numProd = numProd;
-    }
     public void setMaxProd(int maxProd) {
         this.maxProd = maxProd;
     }
-    public static void setMax(int max) {
-        Usuario.max = max;
-    
-    }   
-    //METODOS
-
-    //PEDIR NOMBRE
-    public static String PedirNombre(){ //Pide un nombre al cliente
-        Scanner lector = new Scanner(System.in);
-        
-        String valor;
-        valor = lector.nextLine();
-      
-        return valor;
+    public void setCartera(double cartera) {
+        this.cartera = cartera;
     }
-
-    public static int PedirDato(){ //Pide un dato al cliente
-        Scanner lector = new Scanner(System.in);
-        
-        int valor;
-        valor = lector.nextInt();
-       
-        return valor;  
-    } 
-    public static int pedirrango(int min, int max) { 
-        int valor;
-        do {
-            System.out.print(" Nº entre " + min + " y " + max + ": ");
-            valor = lector.nextInt();
-            if (valor < min || valor > max) {
-                System.out.println("Nº no válido.");
-            }
-        } 
-        while (valor < min || valor > max);
-        lector.nextLine();
-        return valor;     
+    public void setPrecioCesta(double precioCesta) {
+        this.precioCesta = precioCesta;
     }
-    //VERIFICA SI ESTA DUPLICADO EL NOMBRE EN EL ARRAY
-    public static boolean nombreRepetido() {
-        boolean repetido = false;
-        for (int i = 0; i < max; i++) {
-            if (usuario[i].nombre.toLowerCase().equals(usuario[cont].nombre.toLowerCase())) {
-                repetido = true;
-            }
-        }
-        return repetido;
-    }
+  
+    //MÉTODOS
 
-    //REGISTRAR USUARIO
-    public static void registrarusuario() {
-        if (cont< max) {  //Creamos cuenta nueva desde cero si hay hueco en nuestra matriz
-            System.out.println("¿Cual sera el nombre de la nueva cuenta ?: ");
-                String nombre= PedirNombre();
-                for (int i = 0; i < cont; i++) {
-                    if (nombreRepetido()) {
-                        System.out.println("Ya existe una cuenta con ese nombre.");
-                    }
-                }       
-                cont++;
-                System.out.println("Cuenta agregada correctamente.");
-
-        } else {
-            System.out.println("No es posible");
-        }
-        
-    }
-        
     //AGREGAR CREMA
-    public static void agregarcrema(){
-        //Control carrito lleno
-        if (numProd < maxProd){
-            System.out.println("Dime el nombre de la crema que deseas agregar al carrito?");
-            //SCANNER STRING
-            String nombrecremas = lector.nextLine();
-            lector.nextLine();
-            System.out.println("¿Cuantas cremas desea agregar al carrito?");
-            //SCANNER INT
-            int cantcremas = PedirDato();
-            cremas[numProd] = new Crema(nombrecremas, cantcremas);
-            numProd++;
-        }
-        else{
-            System.out.println("No tienes mas espacio en el carrito");
-        }
+    public void agregarCrema(Crema crema){
+        cesta[numProd] = crema;
+        numProd++;
+        precioCesta += crema.getPrecio();
     }
 
-    public static void eliminar() { //5.metodo para eliminar cuenta
-
-        if(cont == 0){
-            System.out.println("Disculpa,no hay cuentas de usuario disponibles");
-
-        System.out.println("Selecciona la cuenta a eliminar");
-            int borrar = PedirDato();
-            if (cont==0){
-                System.out.println("No existe la cuenta");
-            
-            }else if(borrar >= 0 && borrar < cont){ //Busca la cuenta y desplaza fila y columna para eliminarla
-                System.out.println("Se ha borrado la cuenta de " + usuario[borrar-1]);
-                for (int i = borrar-1; i < cont; i++){
-                    usuario[i] = usuario[i+1];
-                }
-                cont--;
-                System.out.println("Cuenta eliminada");
-            } 
+    //ELIMINAR CREMA
+    public void eliminarCrema(int posicion) {
+        precioCesta -= cesta[posicion].getPrecio();
+        cesta[posicion] = null;
+        for (int i = posicion; i < numProd; i++) {
+            cesta[i] = cesta[i + 1];
         }
-    }  
-    
-    //PAGAR MONTO TOTAL
-    public static void pagarmonto(){
-        System.out.println("Ingresar monto total: ");
-        System.out.println("Dime nombre de usuario: ");
-        nombre = lector.nextInt();
-                //CANT. DE DINERO A PAGAR
-        System.out.println("¿Cuanto dinero debes abonar ?" );
-        int moning = lector.nextInt();
-      //fori crear acumulativo
+        numProd--;
     }
+
+    //VER CESTA
+    public Crema[] verCesta(){
+        for (int i = 0; i < numProd; i++) {
+            System.out.println(i + 1);
+            cesta[i].muestracrema();
+        }
+        return cesta;
+    }
+
 }
