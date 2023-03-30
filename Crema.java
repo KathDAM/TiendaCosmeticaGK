@@ -4,7 +4,7 @@ public class Crema{
     //ATRIBUTOS
     private String nombre;
     private int cant;
-    private String descripcion;
+    //private String descripcion;
     private double precio;
 
     //CONSTRUCTOR VACIO
@@ -12,11 +12,11 @@ public class Crema{
         
     }
 
-    //CONSRUCTOR
-    public Crema(String nombre, int cant ) {
+    //CONSTRUCTOR
+    public Crema(String nombre, int cant, double precio ) {
         this.nombre = nombre;
         this.cant = cant;
-        
+        this.precio = precio;
     }
 
     //GETTERS 
@@ -26,9 +26,7 @@ public class Crema{
     public int getCant() {
         return cant;
     }
-    public String getDescripcion() {
-        return descripcion;
-    }
+
     public double getPrecio() {
         return precio;
     }
@@ -40,13 +38,20 @@ public class Crema{
     public void setCant(int cant) {
         this.cant = cant;
     }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+
     public void setPrecio(double precio) {
         this.precio = precio;
     }
 
+    //METODOS
+
+    //MOSTRAR CREMA
+    public void muestracrema() {
+        System.out.println();
+        System.out.println("Nombre crema: " + getNombre());
+        System.out.println("Cantidad crema: " + getCant());
+        System.out.println("Precio crema: " + getPrecio()); 
+    }
 }
 
 
